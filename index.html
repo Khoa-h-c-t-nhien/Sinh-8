@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHTN 8 (Sinh Học) - Kết Nối Tri Thức - Cô Minh Hòa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark: #0b7a3e;
+            --green-main: #1ea84b;
+            --lime-bright: #b8e92d;
+            --yellow-btn: #f4ff52;
+            --orange-btn: #ff7a18;
+            --blue-btn: #1c82f6;
+            --bg-page: #e8f6e5;
+            --text-dark: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.65;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 22px;
+            box-shadow: 0 15px 40px rgba(11, 122, 62, 0.14);
+            overflow: hidden;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 36px;
+            background: #ffffff;
+            border-bottom: 2px solid #e2f5e6;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--green-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-badge {
+            background: #dcfce7;
+            color: #15803d;
+            font-size: 0.78rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 26px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #334155;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--green-main);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.6rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(100deg, #0b8744 0%, #34b349 55%, #b8e92d 100%);
+            color: white;
+            text-align: center;
+            padding: 56px 24px;
+        }
+
+        .hero-book-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(4px);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 14px;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            max-width: 820px;
+            margin: 0 auto 14px;
+            line-height: 1.3;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .hero p {
+            font-size: 1.08rem;
+            max-width: 700px;
+            margin: 0 auto 26px;
+            opacity: 0.96;
+        }
+
+        .btn-hero {
+            display: inline-block;
+            background: var(--yellow-btn);
+            color: #14532d;
+            font-weight: 700;
+            padding: 13px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+            transition: transform 0.2s;
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Section */
+        .section {
+            padding: 44px 36px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 2px solid #cbd5e1;
+            background: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            border-color: var(--green-main);
+            background: var(--green-main);
+            color: white;
+        }
+
+        /* Grid Bài Giảng */
+        .lecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 24px;
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: #4ade80;
+            box-shadow: 0 14px 30px rgba(30, 168, 75, 0.14);
+        }
+
+        .card-chapter {
+            display: inline-block;
+            background: #ecfdf5;
+            color: #047857;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin-bottom: 12px;
+        }
+
+        .card-preview-3d {
+            height: 130px;
+            background: radial-gradient(circle at 50% 35%, #f0fdf4, #dcfce7);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            border: 1px solid #bbf7d0;
+        }
+
+        .card h3 {
+            font-size: 1.18rem;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .card-toc {
+            list-style: none;
+            font-size: 0.9rem;
+            color: #475569;
+            margin-bottom: 18px;
+            background: #f8fafc;
+            padding: 10px 14px;
+            border-radius: 10px;
+        }
+
+        .card-toc li {
+            margin-bottom: 4px;
+        }
+
+        .btn-card {
+            background: linear-gradient(90deg, #1ea84b, #15803d);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.96rem;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(30, 168, 75, 0.25);
+            transition: filter 0.2s;
+        }
+
+        .btn-card:hover {
+            filter: brightness(1.08);
+        }
+
+        /* Modal Bài Giảng Từng Bước SGK */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 300;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            max-width: 960px;
+            width: 100%;
+            max-height: 92vh;
+            overflow-y: auto;
+            border-radius: 22px;
+            padding: 32px;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+        }
+
+        .close-btn {
+            position: sticky;
+            top: 0;
+            float: right;
+            background: #fee2e2;
+            color: #b91c1c;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .sgk-header-badge {
+            display: inline-block;
+            background: #fef3c7;
+            color: #b45309;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 4px 14px;
+            border-radius: 50px;
+            margin-bottom: 8px;
+        }
+
+        .sgk-objectives {
+            background: #f0fdf4;
+            border-left: 5px solid #16a34a;
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin: 16px 0 24px;
+            font-size: 0.95rem;
+        }
+
+        /* Khung Mô Hình 3D & Chú Thích */
+        .model-3d-box {
+            background: linear-gradient(145deg, #0f172a, #1e293b);
+            color: white;
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 28px;
+            box-shadow: inset 0 2px 15px rgba(255,255,255,0.08), 0 10px 25px rgba(0,0,0,0.18);
+        }
+
+        .model-3d-title {
+            font-size: 1.15rem;
+            color: #a3e635;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .model-3d-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .svg-stage {
+            background: radial-gradient(circle at center, #334155 0%, #0f172a 80%);
+            border-radius: 14px;
+            padding: 16px;
+            border: 1px solid #475569;
+            text-align: center;
+        }
+
+        .svg-stage svg {
+            width: 100%;
+            max-height: 290px;
+            filter: drop-shadow(0 10px 14px rgba(0,0,0,0.45));
+        }
+
+        .annotation-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .annotation-item {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.92rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .annotation-item:hover {
+            background: rgba(163, 230, 53, 0.18);
+            border-color: #a3e635;
+            transform: translateX(4px);
+        }
+
+        .pin-num {
+            display: inline-block;
+            background: #f59e0b;
+            color: #0f172a;
+            font-weight: 700;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            margin-right: 8px;
+        }
+
+        /* Từng Mục SGK (I, II, III) */
+        .sgk-step {
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px 22px;
+            margin-bottom: 18px;
+            background: #ffffff;
+        }
+
+        .sgk-step-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #0b7a3e;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px dashed #bbf7d0;
+        }
+
+        .sgk-step ul {
+            margin-left: 20px;
+        }
+
+        .sgk-step li {
+            margin-bottom: 8px;
+        }
+
+        .teacher-tip {
+            background: linear-gradient(90deg, #fffbeb, #fef3c7);
+            border: 1px solid #fde68a;
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-top: 20px;
+            color: #92400e;
+        }
+
+        /* Trắc nghiệm */
+        .quiz-box {
+            background: #f4fbf4;
+            border: 2px dashed #86efac;
+            border-radius: 18px;
+            padding: 28px;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .quiz-btn {
+            padding: 13px 16px;
+            border: 2px solid #cbd5e1;
+            border-radius: 12px;
+            background: white;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .quiz-btn:hover {
+            border-color: var(--green-main);
+            background: #f0fdf4;
+        }
+
+        /* Hỏi đáp */
+        .qa-banner {
+            background: linear-gradient(180deg, #eaf8e6 0%, #d8f3d0 100%);
+            padding: 44px 24px;
+            text-align: center;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .btn-call, .btn-zalo {
+            color: white;
+            text-decoration: none;
+            padding: 13px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: transform 0.2s;
+        }
+
+        .btn-call {
+            background: var(--orange-btn);
+            box-shadow: 0 4px 14px rgba(255, 122, 24, 0.35);
+        }
+
+        .btn-zalo {
+            background: var(--blue-btn);
+            box-shadow: 0 4px 14px rgba(28, 130, 246, 0.35);
+        }
+
+        .btn-call:hover, .btn-zalo:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 18px;
+            background: #14532d;
+            color: #dcfce7;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container { margin: 0; border-radius: 0; }
+            header { padding: 14px 20px; }
+            .menu-toggle { display: block; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 62px; left: 0; right: 0;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            nav ul.show { display: flex; }
+            .model-3d-grid { grid-template-columns: 1fr; }
+            .section { padding: 30px 18px; }
+            .modal-content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <header id="trang-chu">
+        <a href="#" class="logo">
+            🧬 Sinh Học 8 - Cô Minh Hòa
+            <span class="logo-badge">SGK Kết Nối Tri Thức</span>
+        </a>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="#trang-chu">Trang chủ</a></li>
+                <li><a href="#bai-giang">Bài giảng SGK</a></li>
+                <li><a href="#trac-nghiem">Trắc nghiệm</a></li>
+                <li><a href="#hoi-dap">Hỏi bài Cô Hòa</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-book-tag">📘 BỘ SÁCH KẾT NỐI TRI THỨC VỚI CUỘC SỐNG - KHTN 8</div>
+        <h1>Học Sinh Học 8 Trực Quan Từng Bước Cùng Mô Hình 3D Rõ Nét!</h1>
+        <p>Hệ thống bài giảng của cô Minh Hòa được biên soạn theo đúng trình tự Mục I, II, III trong Sách giáo khoa, tích hợp hình vẽ 3D có chú thích từng bộ phận giúp các em nhìn là hiểu ngay.</p>
+        <a href="#bai-giang" class="btn-hero">Mở Sách & Quan Sát Mô Hình 3D ↓</a>
+    </section>
+
+    <!-- Danh mục Bài Giảng chuẩn SGK Kết nối tri thức -->
+    <section class="section" id="bai-giang">
+        <div class="section-header">
+            <h2 class="section-title">📚 Các Bài Học Trọng Tâm (Chương VII & Chương VIII)</h2>
+            <div class="filter-group">
+                <button class="filter-btn active" onclick="filterLessons('all', this)">Tất cả bài học</button>
+                <button class="filter-btn" onclick="filterLessons('chuong7', this)">🫀 Chương VII: Cơ thể người</button>
+                <button class="filter-btn" onclick="filterLessons('chuong8', this)">🌿 Chương VIII: Sinh vật & Môi trường</button>
+            </div>
+        </div>
+
+        <div class="lecture-grid">
+            <!-- Bài 31 -->
+            <div class="card" data-category="chuong7">
+                <div>
+                    <span class="card-chapter">Chương VII • Bài 31 SGK</span>
+                    <div class="card-preview-3d">
+                        <span style="font-size: 4rem; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.2));">🦴</span>
+                    </div>
+                    <h3>Bài 31: Hệ vận động ở người</h3>
+                    <ul class="card-toc">
+                        <li><strong>I.</strong> Cấu tạo và chức năng của hệ vận động</li>
+                        <li><strong>II.</strong> Một số bệnh, tật liên quan đến hệ vận động</li>
+                        <li><strong>III.</strong> Tập thể dục thể thao & Sơ cứu gãy xương</li>
+                    </ul>
+                </div>
+                <button class="btn-card" onclick="openLesson(31)">🔍 Xem Mô hình 3D & Bài giảng</button>
+            </div>
+
+            <!-- Bài 32 -->
+            <div class="card" data-category="chuong7">
+                <div>
+                    <span class="card-chapter">Chương VII • Bài 32 SGK</span>
+                    <div class="card-preview-3d">
+                        <span style="font-size: 4rem; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.2));">🍎</span>
+                    </div>
+                    <h3>Bài 32: Dinh dưỡng và tiêu hóa ở người</h3>
+                    <ul class="card-toc">
+                        <li><strong>I.</strong> Khái niệm chất dinh dưỡng và dinh dưỡng</li>
+                        <li><strong>II.</strong> Cấu tạo và chức năng của hệ tiêu hóa</li>
+                        <li><strong>III.</strong> Chế độ dinh dưỡng & An toàn thực phẩm</li>
+                    </ul>
+                </div>
+                <button class="btn-card" onclick="openLesson(32)">🔍 Xem Mô hình 3D & Bài giảng</button>
+            </div>
+
+            <!-- Bài 33 -->
+            <div class="card" data-category="chuong7">
+                <div>
+                    <span class="card-chapter">Chương VII • Bài 33 SGK</span>
+                    <div class="card-preview-3d">
+                        <span style="font-size: 4rem; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.2));">🫀</span>
+                    </div>
+                    <h3>Bài 33: Máu và hệ tuần hoàn của cơ thể người</h3>
+                    <ul class="card-toc">
+                        <li><strong>I.</strong> Máu (Thành phần máu, Miễn dịch, Nhóm máu)</li>
+                        <li><strong>II.</strong> Hệ tuần hoàn (Tim 4 ngăn & 2 vòng tuần hoàn)</li>
+                        <li><strong>III.</strong> Phòng bệnh tim mạch & Thực hành cầm máu</li>
+                    </ul>
+                </div>
+                <button class="btn-card" onclick="openLesson(33)">🔍 Xem Mô hình 3D & Bài giảng</button>
+            </div>
+
+            <!-- Bài 34 -->
+            <div class="card" data-category="chuong7">
+                <div>
+                    <span class="card-chapter">Chương VII • Bài 34 SGK</span>
+                    <div class="card-preview-3d">
+                        <span style="font-size: 4rem; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.2));">🫁</span>
+                    </div>
+                    <h3>Bài 34: Hệ hô hấp ở người</h3>
+                    <ul class="card-toc">
+                        <li><strong>I.</strong> Cấu tạo và chức năng của hệ hô hấp</li>
+                        <li><strong>II.</strong> Một số bệnh về phổi và đường hô hấp</li>
+                        <li><strong>III.</strong> Tác hại của thuốc lá & Hô hấp nhân tạo</li>
+                    </ul>
+                </div>
+                <button class="btn-card" onclick="openLesson(34)">🔍 Xem Mô hình 3D & Bài giảng</button>
+            </div>
+
+            <!-- Bài 35 -->
+            <div class="card" data-category="chuong7">
+                <div>
+                    <span class="card-chapter">Chương VII • Bài 35 SGK</span>
+                    <div class="card-preview-3d">
+                        <span style="font-size: 4rem; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.2));">💧</span>
+                    </div>
+                    <h3>Bài 35: Hệ bài tiết ở người</h3>
+                    <ul class="card-toc">
+                        <li><strong>I.</strong> Cấu tạo và chức năng của hệ bài tiết nước tiểu</li>
+                        <li><strong>II.</strong> Cấu tạo đơn vị chức năng của thận (Nephron)</li>
+                        <li><strong>III.</strong> Phòng bệnh sỏi thận, suy thận & Ghép thận</li>
+                    </ul>
+                </div>
+                <button class="btn-card" onclick="openLesson(35)">🔍 Xem Mô hình 3D & Bài giảng</button>
+            </div>
+
+            <!-- Bài 37 -->
+            <div class="card" data-category="chuong7">
+                <div>
+                    <span class="card-chapter">Chương VII • Bài 37 SGK</span>
+                    <div class="card-preview-3d">
+                        <span style="font-size: 4rem; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.2));">🧠</span>
+                    </div>
+                    <h3>Bài 37: Hệ thần kinh và các giác quan ở người</h3>
+                    <ul class="card-toc">
+                        <li><strong>I.</strong> Hệ thần kinh (Cấu tạo Neuron, Trung ương & Ngoại biên)</li>
+                        <li><strong>II.</strong> Các giác quan: Thị giác (Mắt) & Thính giác (Tai)</li>
+                        <li><strong>III.</strong> Phòng tránh tật cận thị và chất gây nghiện</li>
+                    </ul>
+                </div>
+                <button class="btn-card" onclick="openLesson(37)">🔍 Xem Mô hình 3D & Bài giảng</button>
+            </div>
+
+            <!-- Bài 41 & 44 -->
+            <div class="card" data-category="chuong8">
+                <div>
+                    <span class="card-chapter">Chương VIII • Bài 41 - 44 SGK</span>
+                    <div class="card-preview-3d">
+                        <span style="font-size: 4rem; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.2));">🌳</span>
+                    </div>
+                    <h3>Bài 41 & 44: Môi trường sống và Hệ sinh thái</h3>
+                    <ul class="card-toc">
+                        <li><strong>I.</strong> Môi trường sống & Các nhân tố sinh thái</li>
+                        <li><strong>II.</strong> Cấu trúc Hệ sinh thái & Chuỗi, lưới thức ăn</li>
+                        <li><strong>III.</strong> Tháp sinh thái & Bảo vệ rừng vùng cao</li>
+                    </ul>
+                </div>
+                <button class="btn-card" onclick="openLesson(44)">🔍 Xem Mô hình 3D & Bài giảng</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trắc nghiệm -->
+    <section class="section" id="trac-nghiem" style="padding-top: 0;">
+        <h2 class="section-title" style="margin-bottom: 18px;">🎯 Củng cố kiến thức SGK Kết nối tri thức 8</h2>
+        <div class="quiz-box">
+            <div id="quiz-q" style="font-size: 1.12rem; font-weight: 700;"></div>
+            <div class="quiz-options" id="quiz-opts"></div>
+            <div style="margin-top: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <p id="quiz-feedback" style="font-weight: 700;"></p>
+                <button onclick="nextQuestion()" style="background: var(--orange-btn); color: white; border: none; padding: 10px 22px; border-radius: 50px; font-weight: 700; cursor: pointer;">Câu tiếp theo ➜</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Liên hệ -->
+    <section class="qa-banner" id="hoi-dap">
+        <h2>Chỗ nào trên hình 3D hoặc trong SGK chưa rõ, hỏi cô Minh Hòa ngay nhé!</h2>
+        <p>Cô luôn sẵn sàng hỗ trợ các em học sinh lớp 8 ôn bài và giải đáp thắc mắc.</p>
+        <div class="contact-buttons">
+            <a href="tel:0852994266" class="btn-call">📞 Gọi cô Minh Hòa (0852994266)</a>
+            <a href="https://zalo.me/0852994266" target="_blank" class="btn-zalo">💬 Nhắn Zalo (Minh Hòa)</a>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 - Website Bài Giảng KHTN 8 (Phân môn Sinh học - Bộ Kết Nối Tri Thức) | Giáo viên: Cô Minh Hòa - ĐT/Zalo: 0852994266
+    </footer>
+</div>
+
+<!-- Modal Chi Tiết Bài Giảng + Mô Hình 3D -->
+<div class="modal" id="lesson-modal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal()">✖</button>
+        <div id="modal-body"></div>
+    </div>
+</div>
+
+<script>
+    function toggleMenu() {
+        document.getElementById('nav-list').classList.toggle('show');
+    }
+
+    function filterLessons(cat, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.card').forEach(c => {
+            c.style.display = (cat === 'all' || c.dataset.category === cat) ? 'flex' : 'none';
+        });
+    }
+
+    const lessonsData = {
+        31: {
+            badge: "CHƯƠNG VII - BÀI 31 (SGK KẾT NỐI TRI THỨC TRANG 126)",
+            title: "Bài 31: Hệ vận động ở người",
+            objective: "Nêu được cấu tạo và chức năng của hệ vận động (xương, khớp xương, cơ bắp); trình bày được một số bệnh, tật liên quan (loãng xương, cong vẹo cột sống) và thực hành sơ cứu gãy xương.",
+            svg3D: `
+                <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="bone3d" cx="35%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="60%" stop-color="#fef3c7"/>
+                            <stop offset="100%" stop-color="#d97706"/>
+                        </radialGradient>
+                        <linearGradient id="marrow3d" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#fb7185"/>
+                            <stop offset="100%" stop-color="#be123c"/>
+                        </linearGradient>
+                        <linearGradient id="cart3d" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#7dd3fc"/>
+                            <stop offset="100%" stop-color="#0284c7"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Khung xương dài 3D -->
+                    <path d="M90,75 C60,40 40,85 75,115 L75,145 C40,175 60,220 90,185 L310,185 C340,220 360,175 325,145 L325,115 C360,85 340,40 310,75 Z" fill="url(#bone3d)" stroke="#b45309" stroke-width="3"/>
+                    <!-- Sụn bọc đầu xương (1) -->
+                    <path d="M75,65 C45,65 45,195 75,195" fill="none" stroke="url(#cart3d)" stroke-width="12" stroke-linecap="round"/>
+                    <!-- Mô xương xốp đầu xương (2) -->
+                    <circle cx="95" cy="130" r="32" fill="#fde68a" stroke="#d97706" stroke-dasharray="4,3" stroke-width="2"/>
+                    <!-- Khoang xương chứa tủy đỏ/vàng (4) -->
+                    <rect x="145" y="105" width="135" height="50" rx="18" fill="url(#marrow3d)" stroke="#881337" stroke-width="2"/>
+                    <!-- Chú thích Pin 1 -->
+                    <line x1="60" y1="80" x2="30" y2="40" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="30" cy="40" r="13" fill="#f59e0b"/><text x="30" y="45" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">1</text>
+                    <!-- Chú thích Pin 2 -->
+                    <line x1="95" y1="130" x2="95" y2="35" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="95" cy="35" r="13" fill="#f59e0b"/><text x="95" y="40" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">2</text>
+                    <!-- Chú thích Pin 3 -->
+                    <line x1="210" y1="85" x2="210" y2="35" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="210" cy="35" r="13" fill="#f59e0b"/><text x="210" y="40" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">3</text>
+                    <!-- Chú thích Pin 4 -->
+                    <line x1="230" y1="130" x2="290" y2="225" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="290" cy="225" r="13" fill="#f59e0b"/><text x="290" y="230" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">4</text>
+                </svg>
+            `,
+            annotations: [
+                "<strong>(1) Sụn bọc đầu xương:</strong> Lớp sụn bóng láng màu xanh nhạt giúp giảm ma sát trong khớp khi chúng ta chạy nhảy, vận động.",
+                "<strong>(2) Mô xương xốp (ở hai đầu xương):</strong> Gồm các nan xương xếp hình vòng cung giúp phân tán lực tác động và chứa tủy đỏ sinh hồng cầu.",
+                "<strong>(3) Mô xương cứng (ở thân xương):</strong> Rất rắn chắc nhờ chứa muối khoáng Calcium và chất hữu cơ (cốt giao) giúp xương chịu lực.",
+                "<strong>(4) Khoang xương (Ống tủy):</strong> Chứa tủy đỏ ở trẻ em (sinh máu) và tủy vàng chứa mỡ ở người trưởng thành."
+            ],
+            steps: [
+                {
+                    title: "I. Cấu tạo và chức năng của hệ vận động",
+                    body: `<ul>
+                        <li><strong>1. Cấu tạo của bộ xương:</strong> Cơ thể người có khoảng 206 chiếc xương, chia làm 3 phần: <em>Xương đầu</em> (xương sọ, xương mặt), <em>Xương thân</em> (cột sống, lồng ngực) và <em>Xương chi</em> (xương tay, xương chân).</li>
+                        <li><strong>2. Thành phần hóa học của xương:</strong> Gồm <strong>chất hữu cơ</strong> (protein, lipid... tạo tính mềm dẻo) và <strong>chất vô cơ/khoáng</strong> (chủ yếu là Calcium và Phosphorus tạo độ bền chắc).</li>
+                        <li><strong>3. Khớp xương & Hệ cơ:</strong> Khớp động (như khớp đầu gối, khuỷu tay) có dịch khớp giúp cử động linh hoạt. Cơ bám vào hai xương qua khớp; khi cơ co làm xương cử động.</li>
+                    </ul>`
+                },
+                {
+                    title: "II. Một số bệnh, tật liên quan đến hệ vận động",
+                    body: `<ul>
+                        <li><strong>1. Tật cong vẹo cột sống:</strong> Cột sống bị nghiêng sang bên hoặc gù về phía trước do ngồi học sai tư thế, bàn ghế không vừa tầm hoặc mang vác cặp sách lệch một bên vai.</li>
+                        <li><strong>2. Bệnh loãng xương:</strong> Do cơ thể thiếu Calcium và Vitamin D làm mật độ xương giảm, xương giòn và dễ gãy (thường gặp ở người lớn tuổi).</li>
+                    </ul>`
+                },
+                {
+                    title: "III. Luyện tập thể dục thể thao & Thực hành sơ cứu gãy xương",
+                    body: `<ul>
+                        <li><strong>Ý nghĩa thể dục thể thao:</strong> Chạy bộ, đi bộ buổi sáng giúp cơ bắp săn chắc, tăng tiết dịch khớp và kích thích xương hấp thụ Calcium tốt hơn.</li>
+                        <li><strong>Các bước sơ cứu gãy xương cẳng tay:</strong> (1) Đặt nẹp gỗ/tre lót bông gạc vào hai bên chỗ xương gãy ➔ (2) Quấn băng cố định hai đầu nẹp ➔ (3) Dùng khăn tam giác đỡ cẳng tay treo trước ngực và đưa đến cơ sở y tế.</li>
+                    </ul>`
+                }
+            ],
+            tip: "Mỗi buổi sáng các em hãy dành 15-20 phút tập thể dục hoặc chạy bộ ngoài trời để tắm nắng sớm (bổ sung Vitamin D tự nhiên) và nhớ ngồi thẳng lưng khi học bài nhé!"
+        },
+
+        32: {
+            badge: "CHƯƠNG VII - BÀI 32 (SGK KẾT NỐI TRI THỨC TRANG 131)",
+            title: "Bài 32: Dinh dưỡng và tiêu hóa ở người",
+            objective: "Nêu được khái niệm dinh dưỡng, chất dinh dưỡng; trình bày được cấu tạo và chức năng của ống tiêu hóa, tuyến tiêu hóa; xây dựng được chế độ dinh dưỡng hợp lí và an toàn vệ sinh thực phẩm.",
+            svg3D: `
+                <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="liver3d" cx="30%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#f87171"/>
+                            <stop offset="100%" stop-color="#7f1d1d"/>
+                        </radialGradient>
+                        <radialGradient id="stomach3d" cx="40%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#fda4af"/>
+                            <stop offset="100%" stop-color="#e11d48"/>
+                        </radialGradient>
+                        <linearGradient id="gut3d" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#fde047"/>
+                            <stop offset="100%" stop-color="#ca8a04"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Thực quản (1) -->
+                    <rect x="200" y="15" width="18" height="65" rx="8" fill="#fda4af" stroke="#be123c" stroke-width="2"/>
+                    <!-- Gan & Túi mật (2) -->
+                    <path d="M115,75 C115,50 195,55 198,85 L135,125 Z" fill="url(#liver3d)" stroke="#450a0a" stroke-width="2"/>
+                    <circle cx="160" cy="112" r="10" fill="#22c55e" stroke="#14532d" stroke-width="2"/>
+                    <!-- Dạ dày 3D (3) -->
+                    <path d="M205,75 C265,65 285,125 235,145 C195,158 175,135 190,110 Z" fill="url(#stomach3d)" stroke="#9f1239" stroke-width="2.5"/>
+                    <!-- Ruột già bao quanh -->
+                    <rect x="130" y="150" width="150" height="85" rx="22" fill="none" stroke="#16a34a" stroke-width="18" stroke-dasharray="22,4"/>
+                    <!-- Ruột non ở giữa (4) -->
+                    <path d="M160,175 Q205,155 245,175 Q165,195 245,208 Q185,220 215,215" fill="none" stroke="url(#gut3d)" stroke-width="14" stroke-linecap="round"/>
+                    <!-- Chú thích Pins -->
+                    <line x1="205" y1="35" x2="310" y2="35" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="310" cy="35" r="13" fill="#f59e0b"/><text x="310" y="40" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">1</text>
+
+                    <line x1="145" y1="88" x2="65" y2="65" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="65" cy="65" r="13" fill="#f59e0b"/><text x="65" y="70" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">2</text>
+
+                    <line x1="245" y1="108" x2="335" y2="108" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="335" cy="108" r="13" fill="#f59e0b"/><text x="335" y="113" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">3</text>
+
+                    <line x1="205" y1="192" x2="65" y2="192" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="65" cy="192" r="13" fill="#f59e0b"/><text x="65" y="197" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">4</text>
+                </svg>
+            `,
+            annotations: [
+                "<strong>(1) Thực quản:</strong> Ống dẫn thức ăn từ khoang miệng và hầu xuống dạ dày nhờ các nhu động co bóp.",
+                "<strong>(2) Gan và Túi mật (Tuyến tiêu hóa):</strong> Tiết ra dịch mật giúp nhũ tương hóa lipid (chất béo) và khử độc cho cơ thể.",
+                "<strong>(3) Dạ dày:</strong> Co bóp nhào trộn thức ăn với dịch vị (chứa enzyme Pepsin và HCl) để biến đổi bước đầu chất đạm (Protein).",
+                "<strong>(4) Ruột non & Ruột già:</strong> Ruột non (màu vàng) có hệ thống lông ruột dày đặc hấp thụ chất dinh dưỡng vào máu; Ruột già (màu xanh) hấp thụ lại nước và tạo phân."
+            ],
+            steps: [
+                {
+                    title: "I. Khái niệm chất dinh dưỡng và dinh dưỡng",
+                    body: `<ul>
+                        <li><strong>Chất dinh dưỡng:</strong> Là các chất có trong thức ăn mà cơ thể sử dụng làm nguyên liệu cấu tạo cơ thể và cung cấp năng lượng (Carbohydrate, Protein, Lipid, Vitamin, Chất khoáng).</li>
+                        <li><strong>Dinh dưỡng:</strong> Là quá trình thu nhận, biến đổi và sử dụng chất dinh dưỡng để duy trì sự sống.</li>
+                    </ul>`
+                },
+                {
+                    title: "II. Cấu tạo và chức năng của hệ tiêu hóa",
+                    body: `<ul>
+                        <li><strong>1. Các cơ quan trong ống tiêu hóa:</strong> Khoang miệng (răng nghiền, lưỡi đảo, nước bọt chứa enzyme amylase biến đổi tinh bột chín thành đường) ➔ Hầu ➔ Thực quản ➔ Dạ dày ➔ Ruột non ➔ Ruột già ➔ Trực tràng & Hậu môn.</li>
+                        <li><strong>2. Tuyến tiêu hóa:</strong> Tuyến nước bọt, tuyến vị (ở dạ dày), gan (tiết mật), tụy (tiết dịch tụy) và tuyến ruột.</li>
+                        <li><strong>3. Hấp thụ chất dinh dưỡng:</strong> Diễn ra chủ yếu ở <strong>ruột non</strong> nhờ diện tích bề mặt có nếp gấp và lông ruột cực lớn.</li>
+                    </ul>`
+                },
+                {
+                    title: "III. Chế độ dinh dưỡng và An toàn vệ sinh thực phẩm",
+                    body: `<ul>
+                        <li><strong>Một số bệnh đường tiêu hóa:</strong> Sâu răng, viêm loét dạ dày - tá tràng (do vi khuẩn <em>Helicobacter pylori</em> hoặc thức khuya, căng thẳng), tiêu chảy.</li>
+                        <li><strong>Nguyên tắc an toàn thực phẩm:</strong> Ăn chín uống sôi, rửa tay trước khi ăn, không ăn các loại nấm lạ trên rừng hoặc củ khoai đã mọc mầm.</li>
+                    </ul>`
+                }
+            ],
+            tip: "Khi ăn cơm, khoai lang hay ngô, các em hãy nhai thật kỹ thì sẽ thấy vị ngọt. Đó là do enzyme Amylase trong nước bọt đã biến đổi tinh bột thành đường maltose đấy!"
+        },
+
+        33: {
+            badge: "CHƯƠNG VII - BÀI 33 (SGK KẾT NỐI TRI THỨC TRANG 136)",
+            title: "Bài 33: Máu và hệ tuần hoàn của cơ thể người",
+            objective: "Nhận biết được các thành phần của máu (huyết tương, hồng cầu, bạch cầu, tiểu cầu); giải thích được cơ chế miễn dịch, vaccine và nguyên tắc truyền máu; mô tả được cấu tạo tim và hệ mạch.",
+            svg3D: `
+                <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="rbc3d" cx="35%" cy="35%" r="65%">
+                            <stop offset="0%" stop-color="#ff6b6b"/>
+                            <stop offset="65%" stop-color="#dc2626"/>
+                            <stop offset="100%" stop-color="#7f1d1d"/>
+                        </radialGradient>
+                        <radialGradient id="wbc3d" cx="35%" cy="35%" r="65%">
+                            <stop offset="0%" stop-color="#f8fafc"/>
+                            <stop offset="100%" stop-color="#93c5fd"/>
+                        </radialGradient>
+                    </defs>
+                    <!-- Mạch máu chứa Huyết tương (1) -->
+                    <rect x="35" y="55" width="350" height="150" rx="75" fill="#fef08a" fill-opacity="0.25" stroke="#ef4444" stroke-width="6"/>
+                    <!-- Hồng cầu hình đĩa lõm 2 mặt (2) -->
+                    <ellipse cx="135" cy="115" rx="38" ry="26" fill="url(#rbc3d)"/>
+                    <ellipse cx="135" cy="115" rx="18" ry="10" fill="#991b1b"/>
+                    <ellipse cx="205" cy="155" rx="34" ry="22" fill="url(#rbc3d)"/>
+                    <!-- Bạch cầu có nhân lớn (3) -->
+                    <circle cx="265" cy="110" r="32" fill="url(#wbc3d)" stroke="#3b82f6" stroke-width="2"/>
+                    <path d="M255,105 C265,90 280,105 270,120 C260,128 248,118 255,105 Z" fill="#4f46e5"/>
+                    <!-- Tiểu cầu nhỏ (4) -->
+                    <polygon points="325,145 335,138 342,148 332,156" fill="#facc15" stroke="#ca8a04" stroke-width="1.5"/>
+                    <polygon points="348,125 358,120 362,130 352,135" fill="#facc15" stroke="#ca8a04" stroke-width="1.5"/>
+                    <!-- Pins -->
+                    <line x1="75" y1="80" x2="55" y2="30" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="55" cy="30" r="13" fill="#f59e0b"/><text x="55" y="35" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">1</text>
+
+                    <line x1="135" y1="115" x2="145" y2="30" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="145" cy="30" r="13" fill="#f59e0b"/><text x="145" y="35" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">2</text>
+
+                    <line x1="265" y1="110" x2="265" y2="30" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="265" cy="30" r="13" fill="#f59e0b"/><text x="265" y="35" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">3</text>
+
+                    <line x1="335" y1="148" x2="355" y2="230" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="355" cy="230" r="13" fill="#f59e0b"/><text x="355" y="235" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">4</text>
+                </svg>
+            `,
+            annotations: [
+                "<strong>(1) Huyết tương (55% thể tích máu):</strong> Chất lỏng màu vàng nhạt (90% là nước) giúp duy trì máu ở trạng thái lỏng và vận chuyển chất dinh dưỡng, chất thải.",
+                "<strong>(2) Hồng cầu:</strong> Hình đĩa, lõm hai mặt, không nhân, chứa Hemoglobin (Hb) màu đỏ giúp vận chuyển khí Oxygen ($O_2$) và Carbon dioxide ($CO_2$).",
+                "<strong>(3) Bạch cầu:</strong> Tế bào có nhân, kích thước lớn, đóng vai trò 'chiến sĩ' bảo vệ cơ thể bằng cách thực bào và tiết kháng thể tiêu diệt vi khuẩn, virus.",
+                "<strong>(4) Tiểu cầu:</strong> Các mảnh tế bào nhỏ không nhân, tham gia trực tiếp vào quá trình làm đông máu để bịt kín vết thương."
+            ],
+            steps: [
+                {
+                    title: "I. Máu, Miễn dịch và Hệ nhóm máu ABO",
+                    body: `<ul>
+                        <li><strong>1. Các thành phần của máu:</strong> Gồm Huyết tương (55%) và các tế bào máu (45%: Hồng cầu, Bạch cầu, Tiểu cầu).</li>
+                        <li><strong>2. Miễn dịch và Vaccine:</strong> Kháng nguyên là phần tử ngoại lai (vi khuẩn, virus); Kháng thể là protein do bạch cầu tiết ra để vô hiệu hóa kháng nguyên. Tiêm <strong>vaccine</strong> giúp cơ thể tập dượt tạo sẵn kháng thể phòng bệnh.</li>
+                        <li><strong>3. Hệ nhóm máu ABO:</strong> Có 4 nhóm máu: <strong>A, B, AB, O</strong>. Nhóm máu O là nhóm chuyên cho; nhóm máu AB là nhóm chuyên nhận.</li>
+                    </ul>`
+                },
+                {
+                    title: "II. Cấu tạo và chức năng của Hệ tuần hoàn",
+                    body: `<ul>
+                        <li><strong>1. Tim và Hệ mạch:</strong> Tim có 4 ngăn (Tâm nhĩ trái, Tâm nhĩ phải, Tâm thất trái, Tâm thất phải). Hệ mạch gồm: <em>Động mạch</em> (đưa máu từ tim đi), <em>Mao mạch</em> (trao đổi chất với tế bào) và <em>Tĩnh mạch</em> (đẫn máu về tim).</li>
+                        <li><strong>2. Hai vòng tuần hoàn:</strong> <em>Vòng tuần hoàn nhỏ</em> đưa máu qua phổi để lấy $O_2$, thải $CO_2$; <em>Vòng tuần hoàn lớn</em> đưa máu đỏ tươi giàu $O_2$ đi nuôi toàn bộ cơ thể.</li>
+                    </ul>`
+                },
+                {
+                    title: "III. Phòng bệnh tim mạch & Thực hành sơ cứu cầm máu",
+                    body: `<ul>
+                        <li><strong>Bệnh tim mạch:</strong> Huyết áp cao, xơ vữa động mạch (do ăn nhiều mỡ động vật, ít vận động), thiếu máu.</li>
+                        <li><strong>Sơ cứu chảy máu:</strong> Với vết thương nhỏ (chảy máu mao mạch), rửa sạch bằng nước muối sinh lý, sát trùng và dán băng cá nhân.</li>
+                    </ul>`
+                }
+            ],
+            tip: "Để nhớ quy tắc truyền máu không bị kết dính hồng cầu: Nhóm O không có kháng nguyên A và B trên hồng cầu nên truyền được cho cả 4 nhóm máu đấy các em ạ!"
+        },
+
+        34: {
+            badge: "CHƯƠNG VII - BÀI 34 (SGK KẾT NỐI TRI THỨC TRANG 142)",
+            title: "Bài 34: Hệ hô hấp ở người",
+            objective: "Mô tả được cấu tạo và chức năng của đường dẫn khí và hai lá phổi; giải thích được sự trao đổi khí ở phổi và tế bào; nêu được tác hại của khói thuốc lá và thực hành hô hấp nhân tạo.",
+            svg3D: `
+                <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="lung3d" cx="35%" cy="35%" r="70%">
+                            <stop offset="0%" stop-color="#fda4af"/>
+                            <stop offset="100%" stop-color="#e11d48"/>
+                        </radialGradient>
+                    </defs>
+                    <!-- Khí quản (1) -->
+                    <rect x="198" y="20" width="24" height="75" rx="6" fill="#bae6fd" stroke="#0284c7" stroke-width="2.5"/>
+                    <line x1="198" y1="35" x2="222" y2="35" stroke="#0284c7" stroke-width="2"/>
+                    <line x1="198" y1="50" x2="222" y2="50" stroke="#0284c7" stroke-width="2"/>
+                    <line x1="198" y1="65" x2="222" y2="65" stroke="#0284c7" stroke-width="2"/>
+                    <!-- Hai lá phổi 3D (3) -->
+                    <path d="M192,85 C130,65 95,120 100,195 C105,215 185,205 192,180 Z" fill="url(#lung3d)" stroke="#9f1239" stroke-width="2.5"/>
+                    <path d="M228,85 C290,65 325,120 320,195 C315,215 235,205 228,180 Z" fill="url(#lung3d)" stroke="#9f1239" stroke-width="2.5"/>
+                    <!-- Phế quản phân nhánh (2) -->
+                    <path d="M210,85 L165,125 M210,85 L255,125 M165,125 L140,150 M165,125 L175,160" stroke="#e0f2fe" stroke-width="6" stroke-linecap="round"/>
+                    <!-- Chùm phế nang phóng đại (4) -->
+                    <circle cx="275" cy="150" r="14" fill="#fde047" stroke="#b45309" stroke-width="2"/>
+                    <circle cx="292" cy="145" r="12" fill="#fde047" stroke="#b45309" stroke-width="2"/>
+                    <circle cx="285" cy="165" r="13" fill="#fde047" stroke="#b45309" stroke-width="2"/>
+                    <!-- Pins -->
+                    <line x1="210" y1="45" x2="310" y2="35" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="310" cy="35" r="13" fill="#f59e0b"/><text x="310" y="40" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">1</text>
+
+                    <line x1="165" y1="125" x2="60" y2="95" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="60" cy="95" r="13" fill="#f59e0b"/><text x="60" y="100" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">2</text>
+
+                    <line x1="135" y1="175" x2="60" y2="185" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="60" cy="185" r="13" fill="#f59e0b"/><text x="60" y="190" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">3</text>
+
+                    <line x1="285" y1="155" x2="365" y2="180" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="365" cy="180" r="13" fill="#f59e0b"/><text x="365" y="185" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">4</text>
+                </svg>
+            `,
+            annotations: [
+                "<strong>(1) Khí quản:</strong> Được cấu tạo từ các vòng sụn khuyết giúp đường dẫn khí luôn mở rộng, có lớp niêm mạc tiết chất nhầy giữ bụi và vi khuẩn.",
+                "<strong>(2) Phế quản và Tiểu phế quản:</strong> Phân nhánh như cành cây dẫn không khí đi sâu vào từng thùy phổi.",
+                "<strong>(3) Hai lá phổi (Phổi phải 3 thùy, Phổi trái 2 thùy):</strong> Nằm trong khoang ngực, được bao bọc bởi hai lớp màng phổi.",
+                "<strong>(4) Chùm phế nang (700 - 800 triệu phế nang):</strong> Được bao quanh bởi mạng lưới mao mạch máu dày đặc, là nơi trực tiếp diễn ra trao đổi khí $O_2$ và $CO_2$."
+            ],
+            steps: [
+                {
+                    title: "I. Cấu tạo và chức năng của hệ hô hấp",
+                    body: `<ul>
+                        <li><strong>1. Đường dẫn khí:</strong> Xoang mũi (có lông mũi và mạch máu giúp làm sạch, làm ấm, làm ẩm không khí) ➔ Hầu ➔ Thanh quản ➔ Khí quản ➔ Phế quản.</li>
+                        <li><strong>2. Hai lá phổi:</strong> Tập hợp hàng trăm triệu phế nang giúp diện tích bề mặt trao đổi khí lên tới 70 – 80 $m^2$.</li>
+                        <li><strong>3. Cơ chế trao đổi khí:</strong> Nhờ cơ chế khuếch tán: Khí $O_2$ từ phế nang đi vào máu và từ máu vào tế bào; khí $CO_2$ từ tế bào đi vào máu và ra phế nang để thở ra ngoài.</li>
+                    </ul>`
+                },
+                {
+                    title: "II. Một số bệnh về đường hô hấp và Tác hại của thuốc lá",
+                    body: `<ul>
+                        <li><strong>Bệnh hô hấp:</strong> Viêm mũi, viêm họng, viêm phế quản, viêm phổi (thường tăng vào mùa đông lạnh vùng cao nếu không giữ ấm cổ và ngực).</li>
+                        <li><strong>Tác hại của khói thuốc lá:</strong> Chứa hơn 7.000 hóa chất độc hại (Nicotine gây nghiện, khí CO chiếm chỗ $O_2$ của hồng cầu, chất gây ung thư phổi) gây hại cho cả người hút và người hít phải khói thuốc thụ động.</li>
+                    </ul>`
+                },
+                {
+                    title: "III. Rèn luyện hô hấp & Thực hành hô hấp nhân tạo",
+                    body: `<ul>
+                        <li><strong>Luyện tập:</strong> Hít thở sâu mỗi sáng khi chạy bộ hoặc đi bộ giúp tăng dung tích sống của phổi.</li>
+                        <li><strong>Hô hấp nhân tạo:</strong> Gồm phương pháp hà hơi thổi ngạt kết hợp ép tim ngoài lồng ngực để cấp cứu người đuối nước hoặc ngạt khí.</li>
+                    </ul>`
+                }
+            ],
+            tip: "Vào mùa đông ở vùng cao, các em nên thở bằng mũi (không thở bằng miệng) vì xoang mũi có hệ mao mạch giúp sưởi ấm và làm ẩm không khí trước khi vào phổi nhé!"
+        },
+
+        35: {
+            badge: "CHƯƠNG VII - BÀI 35 (SGK KẾT NỐI TRI THỨC TRANG 146)",
+            title: "Bài 35: Hệ bài tiết ở người",
+            objective: "Nêu được cấu tạo và chức năng của hệ bài tiết nước tiểu (thận, ống dẫn nước tiểu, bóng đái, ống đái); trình bày được một số bệnh về hệ bài tiết (sỏi thận, suy thận) và cách phòng tránh.",
+            svg3D: `
+                <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="kidney3d" cx="35%" cy="35%" r="70%">
+                            <stop offset="0%" stop-color="#f87171"/>
+                            <stop offset="100%" stop-color="#991b1b"/>
+                        </radialGradient>
+                    </defs>
+                    <!-- Hai quả thận hình hạt đậu (1) -->
+                    <path d="M150,55 C115,45 105,125 150,135 C165,135 162,105 155,95 C162,85 165,55 150,55 Z" fill="url(#kidney3d)" stroke="#450a0a" stroke-width="2.5"/>
+                    <path d="M270,55 C305,45 315,125 270,135 C255,135 258,105 265,95 C258,85 255,55 270,55 Z" fill="url(#kidney3d)" stroke="#450a0a" stroke-width="2.5"/>
+                    <!-- Ống dẫn nước tiểu (2) -->
+                    <path d="M155,100 Q175,155 195,195" fill="none" stroke="#fde047" stroke-width="6"/>
+                    <path d="M265,100 Q245,155 225,195" fill="none" stroke="#fde047" stroke-width="6"/>
+                    <!-- Bóng đái / Bàng quang (3) -->
+                    <ellipse cx="210" cy="200" rx="34" ry="24" fill="#fca5a5" stroke="#b91c1c" stroke-width="2.5"/>
+                    <!-- Ống đái (4) -->
+                    <rect x="205" y="222" width="10" height="24" fill="#fca5a5" stroke="#b91c1c" stroke-width="2"/>
+                    <!-- Pins -->
+                    <line x1="130" y1="85" x2="55" y2="65" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="55" cy="65" r="13" fill="#f59e0b"/><text x="55" y="70" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">1</text>
+
+                    <line x1="175" y1="150" x2="70" y2="155" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="70" cy="155" r="13" fill="#f59e0b"/><text x="70" y="160" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">2</text>
+
+                    <line x1="235" y1="200" x2="345" y2="175" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="345" cy="175" r="13" fill="#f59e0b"/><text x="345" y="180" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">3</text>
+
+                    <line x1="212" y1="235" x2="345" y2="235" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="345" cy="235" r="13" fill="#f59e0b"/><text x="345" y="240" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">4</text>
+                </svg>
+            `,
+            annotations: [
+                "<strong>(1) Hai quả thận:</strong> Mỗi quả thận chứa khoảng 1 triệu đơn vị chức năng (Nephron) làm nhiệm vụ lọc máu để tạo thành nước tiểu.",
+                "<strong>(2) Ống dẫn nước tiểu (Niệu quản):</strong> Dẫn nước tiểu chính thức từ bể thận xuống tích trữ ở bóng đái.",
+                "<strong>(3) Bóng đái (Bàng quang):</strong> Cơ quan rỗng có thành cơ co dãn, chứa nước tiểu trước khi thải ra ngoài.",
+                "<strong>(4) Ống đái (Niệu đạo):</strong> Đưa nước tiểu từ bóng đái ra khỏi cơ thể."
+            ],
+            steps: [
+                {
+                    title: "I. Cấu tạo và chức năng của hệ bài tiết",
+                    body: `<ul>
+                        <li><strong>Bài tiết:</strong> Là quá trình lọc và thải các chất dư thừa, chất độc hại sinh ra do quá trình trao đổi chất (như khí $CO_2$ qua phổi, mồ hôi qua da, và 90% sản phẩm bài tiết hòa tan qua <strong>nước tiểu ở thận</strong>).</li>
+                        <li><strong>Cấu tạo Nephron:</strong> Gồm cầu thận, nang cầu thận và ống thận giúp lọc máu tạo nước tiểu đầu, sau đó hấp thụ lại nước và chất dinh dưỡng cần thiết để tạo nước tiểu chính thức.</li>
+                    </ul>`
+                },
+                {
+                    title: "II. Một số bệnh về hệ bài tiết và Cách phòng tránh",
+                    body: `<ul>
+                        <li><strong>Bệnh sỏi thận, sỏi đường tiết niệu:</strong> Do các muối khoáng hòa tan trong nước tiểu bị kết tinh (vì uống ít nước, ăn quá mặn hoặc hay nhịn tiểu).</li>
+                        <li><strong>Thói quen bảo vệ thận:</strong> Uống đủ nước mỗi ngày (1,5 – 2 lít), không ăn quá mặn, tuyệt đối không nhịn tiểu khi có nhu cầu.</li>
+                    </ul>`
+                }
+            ],
+            tip: "Đi học các em nhớ mang theo bình nước cá nhân để uống đều đặn trong ngày, đừng đợi đến khi khát khô cổ mới uống để bảo vệ hai quả thận nhé!"
+        },
+
+        37: {
+            badge: "CHƯƠNG VII - BÀI 37 (SGK KẾT NỐI TRI THỨC TRANG 153)",
+            title: "Bài 37: Hệ thần kinh và các giác quan ở người",
+            objective: "Trình bày được cấu tạo và chức năng của hệ thần kinh (Neuron, bộ phận trung ương, bộ phận ngoại biên); mô tả được cấu tạo của Mắt (cơ quan thị giác) và Tai (cơ quan thính giác); phòng tránh tật khúc xạ.",
+            svg3D: `
+                <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="soma3d" cx="40%" cy="40%" r="60%">
+                            <stop offset="0%" stop-color="#c084fc"/>
+                            <stop offset="100%" stop-color="#6b21a8"/>
+                        </radialGradient>
+                    </defs>
+                    <!-- Sợi nhánh (1) -->
+                    <path d="M95,130 L45,80 M95,130 L35,130 M95,130 L50,180 M95,130 L95,65 M95,130 L95,195" stroke="#c084fc" stroke-width="5" stroke-linecap="round"/>
+                    <!-- Thân nơron & Nhân (2) -->
+                    <circle cx="105" cy="130" r="34" fill="url(#soma3d)" stroke="#e9d5ff" stroke-width="2.5"/>
+                    <circle cx="105" cy="130" r="13" fill="#fde047"/>
+                    <!-- Sợi trục (3) -->
+                    <line x1="139" y1="130" x2="345" y2="130" stroke="#c084fc" stroke-width="8"/>
+                    <!-- Bao Myelin (4) -->
+                    <rect x="155" y="116" width="42" height="28" rx="10" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+                    <rect x="210" y="116" width="42" height="28" rx="10" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+                    <rect x="265" y="116" width="42" height="28" rx="10" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+                    <!-- Cúc synapse -->
+                    <path d="M345,130 L380,100 M345,130 L385,130 M345,130 L380,160" stroke="#c084fc" stroke-width="4" stroke-linecap="round"/>
+                    <!-- Pins -->
+                    <line x1="55" y1="90" x2="55" y2="35" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="55" cy="35" r="13" fill="#f59e0b"/><text x="55" y="40" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">1</text>
+
+                    <line x1="105" y1="115" x2="140" y2="35" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="140" cy="35" r="13" fill="#f59e0b"/><text x="140" y="40" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">2</text>
+
+                    <line x1="230" y1="120" x2="245" y2="35" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="245" cy="35" r="13" fill="#f59e0b"/><text x="245" y="40" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">3</text>
+
+                    <line x1="375" y1="155" x2="355" y2="225" stroke="#a3e635" stroke-width="2"/>
+                    <circle cx="355" cy="225" r="13" fill="#f59e0b"/><text x="355" y="230" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">4</text>
+                </svg>
+            `,
+            annotations: [
+                "<strong>(1) Sợi nhánh:</strong> Tiếp nhận kích thích từ các tế bào khác hoặc từ cơ quan thụ cảm truyền về thân Neuron.",
+                "<strong>(2) Thân Neuron (chứa Nhân màu vàng):</strong> Trung tâm điều khiển mọi hoạt động trao đổi chất của tế bào thần kinh.",
+                "<strong>(3) Sợi trục & Bao Myelin (màu xanh):</strong> Dẫn truyền xung thần kinh đi cực nhanh đến các cơ quan phản ứng.",
+                "<strong>(4) Tận cùng thần kinh (Synapse):</strong> Nơi chuyển giao xung thần kinh sang tế bào thần kinh tiếp theo hoặc cơ quan trả lời."
+            ],
+            steps: [
+                {
+                    title: "I. Cấu tạo và chức năng của Hệ thần kinh",
+                    body: `<ul>
+                        <li><strong>1. Cấu tạo hệ thần kinh:</strong> Dạng hình ống, gồm <em>Bộ phận trung ương</em> (Não bộ và Tủy sống) và <em>Bộ phận ngoại biên</em> (Các dây thần kinh và hạch thần kinh).</li>
+                        <li><strong>2. Phòng tránh chất gây nghiện:</strong> Tuyệt đối nói KHÔNG với ma túy, thuốc lá điện tử, rượu bia và hạn chế thức khuya để bảo vệ hệ thần kinh.</li>
+                    </ul>`
+                },
+                {
+                    title: "II. Các giác quan (Thị giác & Thính giác)",
+                    body: `<ul>
+                        <li><strong>1. Cơ quan thị giác (Mắt):</strong> Ánh sáng từ vật đi qua Giác mạc ➔ Thủy dịch ➔ Đồng tử ➔ <strong>Thể thủy tinh</strong> ➔ Dịch thủy tinh ➔ hiện ảnh trên <strong>Màng lưới (Võng mạc)</strong>.</li>
+                        <li><strong>2. Tật cận thị và cách phòng tránh:</strong> Cận thị là mắt chỉ nhìn rõ vật ở gần, không nhìn rõ vật ở xa (do trục cầu mắt quá dài hoặc thể thủy tinh quá phồng). Cần ngồi học nơi đủ ánh sáng, giữ khoảng cách mắt tới vở 25–30cm, cho mắt nghỉ ngơi sau mỗi 45 phút.</li>
+                        <li><strong>3. Cơ quan thính giác (Tai):</strong> Sóng âm vào Vành tai ➔ Ống tai ➔ làm rung <strong>Màng nhĩ</strong> ➔ Chuỗi xương tai ➔ <strong>Ốc tai</strong> kích thích dây thần kinh thính giác.</li>
+                    </ul>`
+                }
+            ],
+            tip: "Khi dùng điện thoại hoặc máy tính để học bài trên web của cô Minh Hòa, các em nhớ áp dụng quy tắc 20-20-20: Cứ 20 phút nhìn màn hình thì nhìn ra xa 20 feet (khoảng 6 mét) trong 20 giây để mắt luôn sáng khỏe nhé!"
+        },
+
+        44: {
+            badge: "CHƯƠNG VIII - BÀI 41 & 44 (SGK KẾT NỐI TRI THỨC TRANG 168 - 180)",
+            title: "Bài 41 & 44: Môi trường sống và Hệ sinh thái",
+            objective: "Phân biệt được 4 loại môi trường sống và các nhân tố sinh thái (vô sinh, hữu sinh); trình bày được các thành phần của một Hệ sinh thái và vẽ được sơ đồ Chuỗi thức ăn, Lưới thức ăn.",
+            svg3D: `
+                <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Mặt trời (1) -->
+                    <circle cx="55" cy="55" r="28" fill="#fde047" stroke="#f59e0b" stroke-width="4"/>
+                    <!-- Cây xanh - Sinh vật sản xuất (2) -->
+                    <rect x="132" y="150" width="16" height="45" fill="#78350f"/>
+                    <circle cx="140" cy="125" r="35" fill="#22c55e" stroke="#15803d" stroke-width="2.5"/>
+                    <!-- Động vật ăn cỏ & ăn thịt - Sinh vật tiêu thụ (3) -->
+                    <ellipse cx="255" cy="145" rx="35" ry="22" fill="#fb923c" stroke="#c2410c" stroke-width="2.5"/>
+                    <circle cx="282" cy="132" r="14" fill="#fb923c" stroke="#c2410c" stroke-width="2"/>
+                    <!-- Nấm & Vi khuẩn - Sinh vật phân giải (4) -->
+                    <path d="M340,185 C340,155 390,155 390,185 Z" fill="#ef4444" stroke="#991b1b" stroke-width="2"/>
+                    <rect x="358" y="185" width="14" height="22" rx="4" fill="#fef3c7"/>
+                    <!-- Mũi tên Chuỗi thức ăn -->
+                    <path d="M85,75 L110,100" stroke="#fde047" stroke-width="3" stroke-dasharray="4,3"/>
+                    <path d="M180,135 L215,140" stroke="#a3e635" stroke-width="4"/>
+                    <path d="M295,155 L340,175" stroke="#a3e635" stroke-width="4"/>
+                    <!-- Pins -->
+                    <circle cx="55" cy="115" r="13" fill="#f59e0b"/><text x="55" y="120" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">1</text>
+                    <circle cx="140" cy="65" r="13" fill="#f59e0b"/><text x="140" y="70" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">2</text>
+                    <circle cx="255" cy="95" r="13" fill="#f59e0b"/><text x="255" y="100" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">3</text>
+                    <circle cx="365" cy="130" r="13" fill="#f59e0b"/><text x="365" y="135" text-anchor="middle" font-weight="bold" font-size="13" fill="#000">4</text>
+                </svg>
+            `,
+            annotations: [
+                "<strong>(1) Nhân tố vô sinh (Ánh sáng mặt trời, đất, nước, nhiệt độ):</strong> Cung cấp nguồn năng lượng khởi đầu và môi trường sống cho sinh vật.",
+                "<strong>(2) Sinh vật sản xuất (Thực vật, tảo):</strong> Có khả năng quang hợp tổng hợp chất hữu cơ từ chất vô cơ và năng lượng ánh sáng.",
+                "<strong>(3) Sinh vật tiêu thụ (Động vật ăn thực vật, động vật ăn thịt):</strong> Sử dụng chất hữu cơ từ sinh vật khác làm thức ăn.",
+                "<strong>(4) Sinh vật phân giải (Nấm, vi khuẩn, giun đất):</strong> Phân giải xác sinh vật và chất thải thành chất khoáng trả lại cho đất và cây trồng."
+            ],
+            steps: [
+                {
+                    title: "I. Môi trường sống và Các nhân tố sinh thái (Bài 41)",
+                    body: `<ul>
+                        <li><strong>1. Bốn loại môi trường sống chủ yếu:</strong> Môi trường trên cạn, môi trường dưới nước, môi trường trong đất và môi trường sinh vật.</li>
+                        <li><strong>2. Các nhân tố sinh thái:</strong> Chia làm 2 nhóm: <em>Nhân tố vô sinh</em> (ánh sáng, nhiệt độ, độ ẩm, đất, nước) và <em>Nhân tố hữu sinh</em> (các sinh vật sống và con người).</li>
+                    </ul>`
+                },
+                {
+                    title: "II. Hệ sinh thái và Chuỗi thức ăn, Lưới thức ăn (Bài 44)",
+                    body: `<ul>
+                        <li><strong>1. Thành phần Hệ sinh thái:</strong> Gồm Thành phần vô sinh (sinh cảnh) + Quần xã sinh vật (Sinh vật sản xuất, Sinh vật tiêu thụ, Sinh vật phân giải).</li>
+                        <li><strong>2. Chuỗi thức ăn:</strong> Là một dãy nhiều loài sinh vật có quan hệ dinh dưỡng với nhau, loài đứng trước là thức ăn của loài đứng kế tiếp. Ví dụ ở ruộng ngô vùng cao: <strong>Cây ngô ➔ Châu chấu ➔ Ếch đồng ➔ Rắn ➔ Vi sinh vật phân giải</strong>.</li>
+                    </ul>`
+                },
+                {
+                    title: "III. Bảo vệ các hệ sinh thái tự nhiên",
+                    body: `<ul>
+                        <li>Không chặt phá rừng bừa bãi, không săn bắt động vật hoang dã, hạn chế rác thải nhựa và tích cực trồng cây gây rừng để giữ nguồn nước và chống sạt lở đất vùng cao.</li>
+                    </ul>`
+                }
+            ],
+            tip: "Khi làm bài tập vẽ Chuỗi thức ăn trong đề kiểm tra, các em nhớ chiều mũi tên luôn chỉ từ sinh vật bị ăn sang sinh vật ăn nó (Ví dụ: Cỏ ➔ Thỏ ➔ Cáo) nhé!"
+        }
+    };
+
+    function openLesson(id) {
+        const d = lessonsData[id];
+        let annotationsHtml = d.annotations.map(a => `<div class="annotation-item">${a}</div>`).join('');
+        let stepsHtml = d.steps.map(s => `
+            <div class="sgk-step">
+                <div class="sgk-step-title">📌 ${s.title}</div>
+                <div>${s.body}</div>
+            </div>
+        `).join('');
+
+        document.getElementById('modal-body').innerHTML = `
+            <span class="sgk-header-badge">${d.badge}</span>
+            <h2 style="color: var(--green-dark); font-size: 1.6rem; margin-bottom: 8px;">${d.title}</h2>
+            <div class="sgk-objectives">
+                <strong>🎯 Yêu cầu cần đạt (SGK Kết nối tri thức):</strong> ${d.objective}
+            </div>
+
+            <div class="model-3d-box">
+                <div class="model-3d-title">
+                    <span>🔬 MÔ HÌNH 3D TRỰC QUAN & CHÚ THÍCH CỤ THỂ</span>
+                    <span style="font-size: 0.85rem; color: #cbd5e1;">(Đối chiếu số (1), (2), (3), (4) trên hình với bảng chú thích bên cạnh)</span>
+                </div>
+                <div class="model-3d-grid">
+                    <div class="svg-stage">${d.svg3D}</div>
+                    <div class="annotation-list">${annotationsHtml}</div>
+                </div>
+            </div>
+
+            <h3 style="margin-bottom: 14px; font-size: 1.25rem; color: #0f172a;">📖 Nội dung bài học từng bước theo SGK:</h3>
+            ${stepsHtml}
+
+            <div class="teacher-tip">
+                <strong>💡 Góc dặn dò & Liên hệ thực tế của Cô Minh Hòa:</strong><br>
+                ${d.tip}
+            </div>
+        `;
+        document.getElementById('lesson-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('lesson-modal').style.display = 'none';
+    }
+
+    const quizList = [
+        {
+            q: "Câu 1 (Bài 31 SGK): Thành phần hóa học nào giúp xương có tính bền chắc và chịu lực tốt?",
+            opts: ["A. Chất khoáng (chủ yếu là Calcium)", "B. Nước trong tủy xương", "C. Chất hữu cơ (Protein)", "D. Vitamin C"],
+            correct: 0,
+            explain: "Chính xác! Chất khoáng (Calcium, Phosphorus) làm xương bền chắc, còn chất hữu cơ giúp xương có tính đàn hồi, mềm dẻo."
+        },
+        {
+            q: "Câu 2 (Bài 33 SGK): Ở người, nhóm máu nào được gọi là 'Nhóm máu chuyên cho' vì hồng cầu không có cả kháng nguyên A và B?",
+            opts: ["A. Nhóm máu A", "B. Nhóm máu B", "C. Nhóm máu AB", "D. Nhóm máu O"],
+            correct: 3,
+            explain: "Tuyệt vời! Nhóm máu O không có kháng nguyên A và B trên hồng cầu nên truyền được cho cả 4 nhóm máu."
+        },
+        {
+            q: "Câu 3 (Bài 34 SGK): Bộ phận nào của phổi là nơi trực tiếp diễn ra sự trao đổi khí giữa cơ thể với môi trường?",
+            opts: ["A. Khí quản", "B. Thanh quản", "C. Các phế nang", "D. Xoang mũi"],
+            correct: 2,
+            explain: "Đúng rồi! Hàng trăm triệu phế nang được bao bọc bởi mạng mao mạch máu dày đặc là nơi trao đổi khí O2 và CO2."
+        },
+        {
+            q: "Câu 4 (Bài 44 SGK): Cho chuỗi thức ăn: Cây ngô ➔ Châu chấu ➔ Ếch đồng ➔ Rắn. Sinh vật nào là Sinh vật sản xuất?",
+            opts: ["A. Châu chấu", "B. Cây ngô", "C. Ếch đồng", "D. Rắn"],
+            correct: 1,
+            explain: "Chính xác! Cây ngô có khả năng quang hợp tự tổng hợp chất hữu cơ nên đứng đầu chuỗi thức ăn là Sinh vật sản xuất."
+        }
+    ];
+
+    let curQ = 0;
+    function renderQuiz() {
+        const item = quizList[curQ];
+        document.getElementById('quiz-q').innerText = item.q;
+        document.getElementById('quiz-feedback').innerText = "";
+        const box = document.getElementById('quiz-opts');
+        box.innerHTML = "";
+        item.opts.forEach((opt, i) => {
+            const b = document.createElement('button');
+            b.className = 'quiz-btn';
+            b.innerText = opt;
+            b.onclick = () => {
+                const fb = document.getElementById('quiz-feedback');
+                if (i === item.correct) {
+                    fb.style.color = '#0b7a3e';
+                    fb.innerText = "🎉 " + item.explain;
+                } else {
+                    fb.style.color = '#dc2626';
+                    fb.innerText = "💡 Chưa đúng rồi, em xem lại phần bài giảng SGK phía trên và chọn lại nhé!";
+                }
+            };
+            box.appendChild(b);
+        });
+    }
+
+    function nextQuestion() {
+        curQ = (curQ + 1) % quizList.length;
+        renderQuiz();
+    }
+
+    renderQuiz();
+</script>
+
+</body>
+</html>
